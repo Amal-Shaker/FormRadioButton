@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:traningforms/form_user.dart';
+import 'package:traningforms/home.dart';
 
 class MershantType extends StatefulWidget {
   @override
@@ -9,7 +11,9 @@ class _MershantTypeState extends State<MershantType> {
   String email;
   String password;
   String bio;
-  String addressShop;
+  String shopAddress;
+  String shopName;
+  String category = 'Fahion';
 
   setEmail(String email) {
     this.email = email;
@@ -23,8 +27,16 @@ class _MershantTypeState extends State<MershantType> {
     this.bio = bio;
   }
 
-  setAddressShop(String addressShop) {
-    this.addressShop = addressShop;
+  setAddressShop(String shopAddress) {
+    this.shopAddress = shopAddress;
+  }
+
+  setShopName(String shopName) {
+    this.shopName = shopName;
+  }
+
+  setCategory(String category) {
+    this.category = category;
   }
 
   saveForm() {
@@ -32,7 +44,7 @@ class _MershantTypeState extends State<MershantType> {
   }
 
   List categories = ['Fahion', 'Shoes', 'Electronics'];
-  String valuee = 'Fahion';
+  //String valuee = 'Fahion';
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -93,6 +105,19 @@ class _MershantTypeState extends State<MershantType> {
                     filled: true)),
           ),
           Container(
+            margin: EdgeInsets.all(20),
+            child: TextFormField(
+                onSaved: (String value) {
+                  setShopName(value);
+                },
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    labelText: 'shop name',
+                    fillColor: Colors.blue.withOpacity(0.2),
+                    filled: true)),
+          ),
+          Container(
             width: MediaQuery.of(context).size.width,
             //  height: 40,
             margin: EdgeInsets.all(20),
@@ -102,10 +127,10 @@ class _MershantTypeState extends State<MershantType> {
                 color: Colors.blue.withOpacity(0.2)),
             child: DropdownButton<String>(
                 isExpanded: true,
-                value: this.valuee,
+                value: this.category,
                 onChanged: (v) {
                   setState(() {
-                    this.valuee = v;
+                    this.category = v;
                   });
                 },
                 items: categories.map((e) {
@@ -125,11 +150,20 @@ class _MershantTypeState extends State<MershantType> {
                   setState(() {
                     saveForm();
                   });
-                  print(this.email);
-                  print(this.password);
-                  print(this.addressShop);
-                  print(this.bio);
-                  print(this.valuee);
+                  FormUser formuser = FormUser.mershant(
+                      email: email,
+                      password: password,
+                      bio: bio,
+                      shopAddress: shopAddress,
+                      shopName: shopName,
+                      category: category);
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Home(formuser)));
+                  // print(this.email);
+                  // print(this.password);
+                  // print(this.addressShop);
+                  // print(this.bio);
+                  // print(this.valuee);
                 },
                 child: Text('save')),
           )

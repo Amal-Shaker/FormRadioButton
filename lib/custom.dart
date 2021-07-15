@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:traningforms/form_user.dart';
+import 'package:traningforms/home.dart';
 
 class CustomType extends StatefulWidget {
   @override
@@ -60,13 +62,18 @@ class _CustomTypeState extends State<CustomType> {
             width: MediaQuery.of(context).size.width,
             child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    saveForm();
-                  });
-                  print(this.email);
-                  print(this.password);
+                  // setState(() {
+                  //   saveForm();
+                  // });
+                  saveForm();
+                  FormUser formUser =
+                      FormUser.customer(email: email, password: password);
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Home(formUser)));
+                  //  print(this.email);
+                  //print(this.password);
                 },
-                child: Text('save')),
+                child: Text('sign up as customer')),
           )
         ],
       ),
