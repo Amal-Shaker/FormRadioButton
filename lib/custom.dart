@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:traningforms/form_user.dart';
 import 'package:traningforms/home.dart';
 
+import 'helpers/sharedpre_helper.dart';
+
 class CustomType extends StatefulWidget {
   @override
   _CustomTypeState createState() => _CustomTypeState();
@@ -34,6 +36,7 @@ class _CustomTypeState extends State<CustomType> {
             child: TextFormField(
                 onSaved: (String value) {
                   setEmail(value);
+                  //  SpHelper.spHelper.setEmail(value);
                 },
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -47,6 +50,7 @@ class _CustomTypeState extends State<CustomType> {
             child: TextFormField(
                 onSaved: (String value) {
                   setPassword(value);
+                  //  SpHelper.spHelper.setPassword(value);
                 },
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -68,8 +72,11 @@ class _CustomTypeState extends State<CustomType> {
                   saveForm();
                   FormUser formUser =
                       FormUser.customer(email: email, password: password);
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Home(formUser)));
+                  SpHelper.spHelper.saveUser(formUser);
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => Home(
+                  //           formuser: formUser,
+                  //         )));
                   //  print(this.email);
                   //print(this.password);
                 },

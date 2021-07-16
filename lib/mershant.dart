@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traningforms/form_user.dart';
+import 'package:traningforms/helpers/sharedpre_helper.dart';
 import 'package:traningforms/home.dart';
 
 class MershantType extends StatefulWidget {
@@ -157,8 +158,12 @@ class _MershantTypeState extends State<MershantType> {
                       shopAddress: shopAddress,
                       shopName: shopName,
                       category: category);
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Home(formuser)));
+                  SpHelper.spHelper.saveUser(formuser);
+                  print('done');
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => Home(
+                  //           formuser: formuser,
+                  //         )));
                   // print(this.email);
                   // print(this.password);
                   // print(this.addressShop);

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:traningforms/home.dart';
 
 import 'custom.dart';
+import 'form_user.dart';
+import 'helpers/sharedpre_helper.dart';
 import 'mershant.dart';
 
 enum TypeUser { customer, mershant }
@@ -13,6 +16,7 @@ class UserForm extends StatefulWidget {
 class _UserFormState extends State<UserForm> {
   TypeUser groupvalue;
   bool choose = true;
+  String result;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +38,7 @@ class _UserFormState extends State<UserForm> {
                           groupValue: groupvalue,
                           onChanged: (v) {
                             this.groupvalue = v;
-                            setState(() {
-                              choose = false;
-                            });
+                            setState(() {});
                           }),
                     ),
                     Expanded(
@@ -46,9 +48,7 @@ class _UserFormState extends State<UserForm> {
                           groupValue: groupvalue,
                           onChanged: (v) {
                             this.groupvalue = v;
-                            setState(() {
-                              choose = true;
-                            });
+                            setState(() {});
                           }),
                     )
                   ],
