@@ -25,6 +25,13 @@ dependencies:
     sdk: flutter
   string_validator: 
   shared_preferences: ^2.0.6
+  path_provider: ^2.0.2
+  sqflite: ^2.0.0+3
+  url_launcher: ^6.0.9
+  share: ^2.0.4
+ 
+  get_it: ^7.2.0
+  provider: ^5.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
